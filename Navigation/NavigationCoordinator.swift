@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 /// Coordinator for managing navigation state across the app
 class NavigationCoordinator: ObservableObject {
@@ -32,12 +33,10 @@ class NavigationCoordinator: ObservableObject {
 
     /// Navigate back
     func navigateBack() {
-        navigationPath.removeLast()
-        if let lastRoute = navigationPath.last {
-            currentRoute = lastRoute
-        } else {
-            currentRoute = .home
+        if !navigationPath.isEmpty {
+            navigationPath.removeLast()
         }
+        currentRoute = .home
     }
 
     /// Go to root

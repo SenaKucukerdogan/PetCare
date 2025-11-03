@@ -94,8 +94,8 @@ class AnalyticsService {
 
             // Calculate average completion time
             let completionTimes = completedTasks.compactMap { task -> TimeInterval? in
-                guard let completedAt = task.completedAt,
-                      let createdAt = task.createdAt else { return nil }
+                guard let completedAt = task.completedAt else { return nil }
+                let createdAt = task.createdAt
                 return completedAt.timeIntervalSince(createdAt)
             }
 

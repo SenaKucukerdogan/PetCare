@@ -206,17 +206,17 @@ extension Color {
 
 extension View {
     /// Apply theme spacing
-    func themePadding(_ edges: Edge.Set = .all, _ spacing: Theme.Spacing = .medium) -> some View {
-        self.padding(edges, spacing.rawValue)
+    func themePadding(_ edges: Edge.Set = .all, _ spacing: CGFloat = Theme.Spacing.medium) -> some View {
+        self.padding(edges, spacing)
     }
 
     /// Apply theme corner radius
-    func themeCornerRadius(_ radius: Theme.BorderRadius = .medium) -> some View {
-        self.cornerRadius(radius.rawValue)
+    func themeCornerRadius(_ radius: CGFloat = Theme.BorderRadius.medium) -> some View {
+        self.cornerRadius(radius)
     }
 
     /// Apply theme shadow
-    func themeShadow(_ shadow: Theme.Shadows.Shadow = .medium) -> some View {
+    func themeShadow(_ shadow: Theme.Shadows.Shadow = Theme.Shadows.medium) -> some View {
         self.shadow(
             color: shadow.color,
             radius: shadow.radius,

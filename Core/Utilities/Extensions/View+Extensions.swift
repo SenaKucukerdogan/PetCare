@@ -116,20 +116,7 @@ extension View {
     }
 
     // MARK: - Accessibility
-
-    /// Add accessibility label and hint
-    func accessibility(label: String, hint: String? = nil) -> some View {
-        self
-            .accessibilityLabel(label)
-            .accessibilityHint(hint ?? "")
-    }
-
-    /// Add accessibility action
-    func accessibilityAction(named name: String, action: @escaping () -> Void) -> some View {
-        self.accessibilityAction(named: name) {
-            action()
-        }
-    }
+    // Use SwiftUI's built-in accessibility modifiers directly to avoid shadowing
 
     // MARK: - Animation
 
@@ -167,41 +154,13 @@ extension View {
         self.navigationBarHidden(true)
     }
 
-    /// Set navigation title with display mode
-    func navigationTitle(_ title: String, displayMode: NavigationBarItem.TitleDisplayMode = .automatic) -> some View {
-        self.navigationTitle(title)
-            .navigationBarTitleDisplayMode(displayMode)
-    }
+    // Prefer SwiftUI's built-in navigationTitle and navigationBarTitleDisplayMode
 
     // MARK: - iOS 15+ Compatibility
-
-    /// Safe area padding (iOS 15+)
-    func safeAreaPadding(_ edges: Edge.Set = .all, _ length: CGFloat? = nil) -> some View {
-        if #available(iOS 15.0, *) {
-            return self.safeAreaInset(edge: edges.first ?? .top, spacing: length ?? 0) {
-                EmptyView()
-            }
-        } else {
-            return self.padding(edges, length ?? 0)
-        }
-    }
+    // Removed custom safeAreaPadding to avoid incorrect API usage
 
     // MARK: - Preview Helpers
-
-    /// Apply preview modifiers
-    func previewDisplayName(_ name: String) -> some View {
-        self.previewDisplayName(name)
-    }
-
-    /// Apply preview layout
-    func previewLayout(_ layout: PreviewLayout) -> some View {
-        self.previewLayout(layout)
-    }
-
-    /// Apply preview device
-    func previewDevice(_ device: PreviewDevice) -> some View {
-        self.previewDevice(device)
-    }
+    // Intentionally left blank: avoid shadowing SwiftUI's preview helpers
 }
 
 // MARK: - View Extensions for Lists

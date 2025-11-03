@@ -134,7 +134,7 @@ struct OnboardingView: View {
                         .frame(maxWidth: .infinity)
                         .frame(height: Theme.Layout.buttonHeight)
                         .background(Color.appPrimary)
-                        .themeCornerRadius(.medium)
+                        .themeCornerRadius(Theme.BorderRadius.medium)
                 }
                 .buttonStylePrimary()
             }

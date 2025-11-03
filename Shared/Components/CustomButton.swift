@@ -36,9 +36,9 @@ struct CustomButton: View {
             ZStack {
                 // Background
                 style.backgroundColor(isEnabled: isEnabled)
-                    .cornerRadius(Theme.BorderRadius.medium.rawValue)
+                    .cornerRadius(Theme.BorderRadius.medium)
                     .overlay(
-                        RoundedRectangle(cornerRadius: Theme.BorderRadius.medium.rawValue)
+                        RoundedRectangle(cornerRadius: Theme.BorderRadius.medium)
                             .stroke(style.borderColor, lineWidth: style.borderWidth)
                     )
 

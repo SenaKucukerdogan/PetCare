@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 import CloudKit
 
 /// Service for managing iCloud synchronization (optional feature)
@@ -217,7 +218,9 @@ class CloudSyncService {
     }
 
     private func saveRecordsToCloud(_ records: [CKRecord]) async throws {
-        try await privateDatabase.save(records)
+        for record in records {
+            _ = try await privateDatabase.save(record)
+        }
     }
 }
 

@@ -78,4 +78,8 @@ enum PetType: String, Codable, CaseIterable {
         case .other: return "questionmark.circle.fill"
         }
     }
+
+    var displayName: String {
+        return self.rawValue
+    }
 }

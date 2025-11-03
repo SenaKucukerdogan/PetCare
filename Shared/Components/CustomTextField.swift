@@ -63,9 +63,9 @@ struct CustomTextField: View {
             .padding(.horizontal, Theme.Layout.cardPadding)
             .padding(.vertical, Theme.Spacing.medium)
             .background(fieldBackground)
-            .cornerRadius(Theme.BorderRadius.medium.rawValue)
+            .cornerRadius(Theme.BorderRadius.medium)
             .overlay(
-                RoundedRectangle(cornerRadius: Theme.BorderRadius.medium.rawValue)
+                RoundedRectangle(cornerRadius: Theme.BorderRadius.medium)
                     .stroke(fieldBorderColor, lineWidth: 1)
             )
             .onTapGesture {

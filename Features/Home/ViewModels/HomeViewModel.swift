@@ -39,25 +39,20 @@ class HomeViewModel: ObservableObject {
         isLoading = true
         error = nil
 
-        Task {
-            do {
-                // Load active pets
-                activePets = petViewModel.activePets
+        DispatchQueue.main.async {
+            // Load active pets
+            self.activePets = self.petViewModel.activePets
 
-                // Load today's tasks
-                todaysTasks = taskViewModel.todaysTasks
+            // Load today's tasks
+            self.todaysTasks = self.taskViewModel.todaysTasks
 
-                // Load upcoming tasks (next 7 days)
-                upcomingTasks = taskViewModel.upcomingTasks.prefix(5).map { $0 }
+            // Load upcoming tasks (next 7 days)
+            self.upcomingTasks = Array(self.taskViewModel.upcomingTasks.prefix(5))
 
-                // Load today's reminders
-                todaysReminders = reminderViewModel.todaysReminders
+            // Load today's reminders
+            self.todaysReminders = self.reminderViewModel.todaysReminders
 
-            } catch {
-                self.error = error
-            }
-
-            isLoading = false
+            self.isLoading = false
         }
     }
 

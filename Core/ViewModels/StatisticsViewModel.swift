@@ -24,17 +24,24 @@ class StatisticsViewModel: ObservableObject {
     private let analyticsService: AnalyticsService
     private let petViewModel: PetViewModel
     private let taskViewModel: TaskViewModel
+    private let reminderViewModel = ReminderViewModel()
     private var cancellables = Set<AnyCancellable>()
 
     // MARK: - Initialization
-    init(analyticsService: AnalyticsService = AnalyticsService.shared,
-         petViewModel: PetViewModel = PetViewModel(),
-         taskViewModel: TaskViewModel = TaskViewModel()) {
+    init(analyticsService: AnalyticsService,
+         petViewModel: PetViewModel,
+         taskViewModel: TaskViewModel) {
         self.analyticsService = analyticsService
         self.petViewModel = petViewModel
         self.taskViewModel = taskViewModel
         setupBindings()
         loadStatistics()
+    }
+
+    convenience init() {
+        self.init(analyticsService: AnalyticsService.shared,
+                  petViewModel: PetViewModel(),
+                  taskViewModel: TaskViewModel())
     }
 
     // MARK: - Public Methods
@@ -44,25 +51,69 @@ class StatisticsViewModel: ObservableObject {
         isLoading = true
         error = nil
 
-        Task {
-            do {
-                async let weekly = analyticsService.getWeeklyStatistics()
-                async let monthly = analyticsService.getMonthlyStatistics()
-                async let petStats = analyticsService.getPetStatistics()
-                async let categoryStats = analyticsService.getTaskCategoryStatistics()
+        // Compute synchronously from current view model data to avoid Task<> naming conflicts
+        let calendar = Calendar.current
+        let now = Date()
 
-                let (weeklyResult, monthlyResult, petStatsResult, categoryStatsResult) = try await (weekly, monthly, petStats, categoryStats)
+        // Weekly interval (Mon-Sun based on current locale/week settings)
+        let weekStart = calendar.date(from: calendar.dateComponents([.yearForWeekOfYear, .weekOfYear], from: now)) ?? now
+        let weekEnd = calendar.date(byAdding: .day, value: 6, to: weekStart) ?? now
+        let weekInterval = DateInterval(start: weekStart, end: weekEnd)
 
-                self.weeklyStats = weeklyResult
-                self.monthlyStats = monthlyResult
-                self.petStats = petStatsResult
-                self.categoryStats = categoryStatsResult
-            } catch {
-                self.error = error
-            }
+        let tasks = taskViewModel.tasks
+        let reminders = reminderViewModel.reminders
 
-            isLoading = false
+        let weeklyTasks = tasks.filter { task in
+            guard let due = task.dueDate else { return false }
+            return weekInterval.contains(due)
         }
+
+        self.weeklyStats = WeeklyStatistics(
+            totalTasks: weeklyTasks.count,
+            completedTasks: weeklyTasks.filter { $0.isCompleted }.count,
+            overdueTasks: weeklyTasks.filter { $0.isOverdue }.count,
+            activeReminders: reminders.filter { $0.isEnabled }.count,
+            period: weekInterval
+        )
+
+        // Monthly interval
+        let monthStart = calendar.date(from: calendar.dateComponents([.year, .month], from: now)) ?? now
+        let monthEnd = calendar.date(byAdding: DateComponents(month: 1, day: -1), to: monthStart) ?? now
+        let monthInterval = DateInterval(start: monthStart, end: monthEnd)
+
+        let monthlyTasks = tasks.filter { task in
+            guard let due = task.dueDate else { return false }
+            return monthInterval.contains(due)
+        }
+
+        self.monthlyStats = MonthlyStatistics(
+            totalTasks: monthlyTasks.count,
+            completedTasks: monthlyTasks.filter { $0.isCompleted }.count,
+            overdueTasks: monthlyTasks.filter { $0.isOverdue }.count,
+            activeReminders: reminders.filter { $0.isEnabled }.count,
+            period: monthInterval
+        )
+
+        // Pet stats (basic)
+        let pets = petViewModel.pets
+        self.petStats = pets.map { pet in
+            let petTasks = tasks.filter { $0.petId == pet.id }
+            let completed = petTasks.filter { $0.isCompleted }.count
+            let pending = petTasks.count - completed
+            return PetStatistics(
+                petId: pet.id,
+                petName: pet.name,
+                tasksCompleted: completed,
+                tasksPending: pending,
+                averageCompletionTime: nil,
+                favoriteCategory: Dictionary(grouping: petTasks, by: { $0.category }).max { $0.value.count < $1.value.count }?.key
+            )
+        }
+
+        // Category stats (basic)
+        self.categoryStats = Dictionary(grouping: tasks, by: { $0.category }).mapValues { $0.count }
+
+        isLoading = false
     }
 
     /// Refresh statistics

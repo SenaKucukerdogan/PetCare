@@ -194,8 +194,10 @@ class ReminderViewModel: ObservableObject {
     }
 
     private func checkNotificationPermissions() {
-        Task {
-            notificationPermissionGranted = await notificationService.checkPermissions()
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            DispatchQueue.main.async {
+                self.notificationPermissionGranted = (settings.authorizationStatus == .authorized)
+            }
         }
     }
 

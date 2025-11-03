@@ -63,7 +63,7 @@ struct WelcomeView: View {
                             .frame(maxWidth: .infinity)
                             .frame(height: Theme.Layout.buttonHeight)
                             .background(Color.white)
-                            .themeCornerRadius(.medium)
+                            .themeCornerRadius(Theme.BorderRadius.medium)
                     }
                     .opacity(showButton ? 1 : 0)
                     .offset(y: showButton ? 0 : 20)
