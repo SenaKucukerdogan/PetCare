@@ -1,0 +1,44 @@
+---
+alwaysApply: true
+---
+# PetCareApp - SwiftUI Development Rules
+
+## Project Context
+- Language: Swift 5.9+
+- Framework: SwiftUI
+- Minimum iOS: 16.0
+- Architecture: MVVM
+- State Management: @StateObject, @ObservableObject
+- Persistence: UserDefaults (later CoreData)
+- Notifications: UNUserNotificationCenter
+
+## Code Style Guidelines
+1. Use meaningful variable names (no abbreviations unless standard)
+2. Follow Swift naming conventions (camelCase for variables, PascalCase for types)
+3. Use explicit types for public APIs
+4. Prefer structs over classes when possible
+5. Use extensions for organizing code
+6. Add // MARK: comments for sections
+7. Always handle optionals safely (guard let, if let)
+8. Use SwiftUI property wrappers correctly (@State, @Binding, @ObservedObject)
+
+## File Structure Rules
+- One type per file (except for small enums/structs)
+- Group related files in folders
+- Use Extensions/ folder for extension files
+- Keep ViewModels separate from Views
+
+## SwiftUI Best Practices
+- Extract subviews when body gets complex (>20 lines)
+- Use @ViewBuilder for conditional views
+- Prefer built-in modifiers over custom views when possible
+- Use .task {} instead of .onAppear for async work
+- Use Spacer() instead of padding when appropriate
+
+## Specific Instructions
+- Always import Foundation and SwiftUI at top
+- Use SF Symbols for icons (Image(systemName:))
+- Implement accessibility labels
+- Add preview provider for all views
+- Use Identifiable protocol for list items
+- Handle errors gracefully with Result type

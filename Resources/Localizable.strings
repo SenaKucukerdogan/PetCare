@@ -1,0 +1,141 @@
+/* Turkish Localization for PetCare App */
+
+/* General */
+"app_name" = "PetCare";
+"ok" = "Tamam";
+"cancel" = "İptal";
+"save" = "Kaydet";
+"delete" = "Sil";
+"edit" = "Düzenle";
+"add" = "Ekle";
+"close" = "Kapat";
+"retry" = "Tekrar Dene";
+"loading" = "Yükleniyor...";
+"error" = "Hata";
+"success" = "Başarılı";
+
+/* Navigation */
+"home" = "Ana Sayfa";
+"tasks" = "Görevler";
+"pets" = "Petlerim";
+"reminders" = "Hatırlatıcılar";
+"statistics" = "İstatistikler";
+"settings" = "Ayarlar";
+
+/* Onboarding */
+"welcome_title" = "PetCare'e Hoş Geldiniz";
+"welcome_subtitle" = "Evcil hayvanlarınızın bakımını kolaylaştırın";
+"welcome_description" = "PetCare ile evcil hayvanlarınızın tüm ihtiyaçlarını takip edin, hatırlatıcılar ayarlayın ve sevdiklerinizin sağlığını koruyun.";
+"get_started" = "Başlayalım";
+"skip" = "Atla";
+"next" = "İleri";
+
+/* Home */
+"good_morning" = "Günaydın";
+"good_afternoon" = "İyi günler";
+"good_evening" = "İyi akşamlar";
+"todays_summary" = "Bugünkü Özet";
+"upcoming_tasks" = "Yaklaşan Görevler";
+"active_pets" = "Aktif Petler";
+"quick_actions" = "Hızlı İşlemler";
+
+/* Pets */
+"add_pet" = "Pet Ekle";
+"edit_pet" = "Pet Düzenle";
+"pet_name" = "Pet Adı";
+"pet_type" = "Pet Türü";
+"pet_breed" = "Cins";
+"birth_date" = "Doğum Tarihi";
+"weight" = "Ağırlık";
+"no_pets" = "Henüz pet eklenmemiş";
+"no_pets_description" = "İlk evcil hayvanınızı ekleyerek başlayın";
+
+/* Tasks */
+"add_task" = "Görev Ekle";
+"edit_task" = "Görev Düzenle";
+"task_title" = "Görev Başlığı";
+"task_description" = "Açıklama";
+"task_category" = "Kategori";
+"task_priority" = "Öncelik";
+"due_date" = "Son Tarih";
+"mark_completed" = "Tamamlandı olarak işaretle";
+"no_tasks" = "Görev bulunamadı";
+"no_tasks_description" = "Yeni görevler ekleyerek petlerinizin bakımını organize edin";
+
+/* Reminders */
+"add_reminder" = "Hatırlatıcı Ekle";
+"edit_reminder" = "Hatırlatıcı Düzenle";
+"reminder_title" = "Hatırlatma Başlığı";
+"reminder_message" = "Mesaj";
+"scheduled_date" = "Planlanan Tarih";
+"is_repeating" = "Tekrarlansın";
+"no_reminders" = "Hatırlatıcı yok";
+"no_reminders_description" = "Önemli tarihleri hatırlatmak için hatırlatıcılar oluşturun";
+
+/* Categories */
+"feeding" = "Beslenme";
+"walking" = "Yürüyüş";
+"grooming" = "Bakım";
+"vet" = "Veteriner";
+"medication" = "İlaç";
+"training" = "Eğitim";
+"cleaning" = "Temizlik";
+"other" = "Diğer";
+
+/* Priorities */
+"low" = "Düşük";
+"medium" = "Orta";
+"high" = "Yüksek";
+"urgent" = "Acil";
+
+/* Pet Types */
+"dog" = "Köpek";
+"cat" = "Kedi";
+"bird" = "Kuş";
+"fish" = "Balık";
+"rabbit" = "Tavşan";
+"hamster" = "Hamster";
+"other" = "Diğer";
+
+/* Dates */
+"today" = "Bugün";
+"yesterday" = "Dün";
+"tomorrow" = "Yarın";
+"days_ago" = "%d gün önce";
+"hours_ago" = "%d saat önce";
+"minutes_ago" = "%d dakika önce";
+"just_now" = "Şimdi";
+
+/* Statistics */
+"total_tasks" = "Toplam Görev";
+"completed_tasks" = "Tamamlanan";
+"pending_tasks" = "Bekleyen";
+"overdue_tasks" = "Geciken";
+"completion_rate" = "Tamamlanma Oranı";
+"weekly_progress" = "Haftalık İlerleme";
+"monthly_progress" = "Aylık İlerleme";
+
+/* Errors */
+"network_error" = "İnternet bağlantınızı kontrol edin";
+"save_error" = "Veri kaydedilirken hata oluştu";
+"load_error" = "Veri yüklenirken hata oluştu";
+"delete_error" = "Veri silinirken hata oluştu";
+"validation_error" = "Girilen bilgiler geçersiz";
+"permission_error" = "İzin gerekli";
+"unknown_error" = "Bilinmeyen bir hata oluştu";
+
+/* Success Messages */
+"save_success" = "Başarıyla kaydedildi";
+"delete_success" = "Başarıyla silindi";
+"update_success" = "Başarıyla güncellendi";
+"sync_success" = "Senkronizasyon tamamlandı";
+
+/* Settings */
+"notifications" = "Bildirimler";
+"appearance" = "Görünüm";
+"language" = "Dil";
+"about" = "Hakkında";
+"privacy_policy" = "Gizlilik Politikası";
+"terms_of_service" = "Kullanım Koşulları";
+"version" = "Versiyon";
+"logout" = "Çıkış Yap";
